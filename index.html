@@ -9,11 +9,7 @@
       content="FUNKIT은 직접 사용하며 발견한 작은 생활의 불편을 제품으로 해결하는 작은 스튜디오입니다."
     />
     <link rel="canonical" href="https://funkit-studio.github.io/" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0c0e'/%3E%3Cpath d='M20 16h27v8H29v8h15v8H29v14h-9z' fill='%23f7f4ed'/%3E%3C/svg%3E"
-    />
+    <link rel="icon" type="image/png" href="./assets/funkit-symbol.png" />
     <title>FUNKIT — Small tools, thoughtfully made.</title>
     <style>
       :root {
@@ -316,6 +312,7 @@
 
       .site-footer {
         display: flex;
+        align-items: center;
         justify-content: space-between;
         gap: 1.5rem;
         padding: 1.5rem 0 2.25rem;
@@ -324,6 +321,30 @@
         font-size: 0.78rem;
         letter-spacing: 0.08em;
         text-transform: uppercase;
+      }
+
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      .brand-seal {
+        display: grid;
+        place-items: center;
+        width: 3rem;
+        height: 3rem;
+        flex: 0 0 auto;
+        overflow: hidden;
+        border: 1px solid rgba(244, 240, 232, 0.32);
+        border-radius: 0.9rem;
+        background: var(--paper);
+      }
+
+      .brand-seal img {
+        width: 82%;
+        height: 82%;
+        object-fit: contain;
       }
 
       @media (max-width: 860px) {
@@ -416,8 +437,18 @@
         }
 
         .site-footer {
+          align-items: flex-start;
           flex-direction: column;
           gap: 0.5rem;
+        }
+
+        .footer-brand {
+          width: 100%;
+        }
+
+        .footer-brand > span:last-child {
+          min-width: 0;
+          line-height: 1.5;
         }
       }
 
@@ -505,7 +536,12 @@
       </main>
 
       <footer class="site-footer">
-        <span>FUNKIT / Independent product studio</span>
+        <span class="footer-brand">
+          <span class="brand-seal" aria-hidden="true">
+            <img src="./assets/funkit-symbol.png" width="1254" height="1254" alt="" />
+          </span>
+          <span>FUNKIT / Independent product studio</span>
+        </span>
         <span>Small tools, thoughtfully made.</span>
       </footer>
     </div>
