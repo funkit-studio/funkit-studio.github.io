@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0c0e" />
+    <meta
+      name="description"
+      content="FUNKIT은 직접 사용하며 발견한 작은 생활의 불편을 제품으로 해결하는 작은 스튜디오입니다."
+    />
+    <link rel="canonical" href="https://funkit-studio.github.io/" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0c0e'/%3E%3Cpath d='M20 16h27v8H29v8h15v8H29v14h-9z' fill='%23f7f4ed'/%3E%3C/svg%3E"
+    />
+    <title>FUNKIT — Small tools, thoughtfully made.</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #0b0c0e;
+        --ink-soft: #141619;
+        --paper: #f4f0e8;
+        --paper-muted: #c6c2ba;
+        --line: rgba(244, 240, 232, 0.15);
+        --accent: #f3b94f;
+        --content: 1240px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          radial-gradient(circle at 78% 18%, rgba(243, 185, 79, 0.07), transparent 27rem),
+          var(--ink);
+        color: var(--paper);
+        font-family: Inter, Pretendard, "Noto Sans KR", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 0.75rem;
+        left: 0.75rem;
+        z-index: 20;
+        transform: translateY(-180%);
+        border-radius: 999px;
+        background: var(--paper);
+        color: var(--ink);
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 160ms ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .site-shell {
+        width: min(calc(100% - 3rem), var(--content));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        display: grid;
+        grid-template-columns: 1fr minmax(18rem, 30rem);
+        align-items: start;
+        gap: 3rem;
+        padding: 2rem 0 5.5rem;
+        border-top: 1px solid var(--line);
+        margin-top: 1.5rem;
+      }
+
+      .wordmark {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 4.25rem);
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        line-height: 0.95;
+      }
+
+      .wordmark-dot {
+        color: var(--accent);
+      }
+
+      .studio-intro {
+        margin: 0;
+        color: var(--paper-muted);
+        font-size: clamp(1rem, 1.2vw, 1.125rem);
+        line-height: 1.75;
+        word-break: keep-all;
+      }
+
+      .collection {
+        padding-bottom: 6rem;
+      }
+
+      .collection-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+        color: var(--paper-muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .collection-header::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: var(--line);
+      }
+
+      .product-grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .product-card {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        grid-template-columns: minmax(20rem, 0.82fr) minmax(22rem, 1.18fr);
+        min-height: min(42rem, calc(100svh - 12rem));
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: var(--ink-soft);
+      }
+
+      .product-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 4rem;
+        padding: clamp(2rem, 5vw, 4.5rem);
+        border-right: 1px solid var(--line);
+      }
+
+      .product-index {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        color: var(--paper-muted);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .product-title {
+        margin: 2.75rem 0 0;
+        font-size: clamp(3.1rem, 7vw, 6.75rem);
+        font-weight: 760;
+        letter-spacing: -0.075em;
+        line-height: 0.94;
+      }
+
+      .product-description {
+        max-width: 31rem;
+        margin: 2rem 0 0;
+        color: var(--paper-muted);
+        font-size: clamp(1rem, 1.35vw, 1.2rem);
+        line-height: 1.75;
+        word-break: keep-all;
+      }
+
+      .product-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin: 2rem 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .product-details li {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.55rem 0.8rem;
+        color: var(--paper-muted);
+        font-size: 0.8rem;
+        font-weight: 650;
+      }
+
+      .product-actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem 1.4rem;
+      }
+
+      .primary-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        min-height: 3.5rem;
+        border-radius: 999px;
+        background: var(--paper);
+        color: var(--ink);
+        padding: 0.9rem 1.35rem;
+        font-size: 0.95rem;
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform 180ms ease, background-color 180ms ease;
+      }
+
+      .primary-action::after {
+        content: "↗";
+        font-size: 1.1rem;
+      }
+
+      .primary-action:hover {
+        transform: translateY(-2px);
+        background: #ffffff;
+      }
+
+      .secondary-action {
+        color: var(--paper-muted);
+        font-size: 0.9rem;
+        font-weight: 650;
+        text-underline-offset: 0.3em;
+        text-decoration-color: rgba(198, 194, 186, 0.5);
+      }
+
+      .secondary-action:hover {
+        color: var(--paper);
+      }
+
+      .primary-action:focus-visible,
+      .secondary-action:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+      }
+
+      .product-artwork {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 34rem;
+        overflow: hidden;
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.45), transparent 46%),
+          #ede7db;
+      }
+
+      .product-artwork::before {
+        content: "";
+        position: absolute;
+        width: 68%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: rgba(243, 185, 79, 0.35);
+        filter: blur(5rem);
+      }
+
+      .product-artwork::after {
+        content: "TODAK ROUTINE / 2026";
+        position: absolute;
+        right: 1.6rem;
+        bottom: 1.5rem;
+        color: rgba(11, 12, 14, 0.48);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+      }
+
+      .app-icon-frame {
+        position: relative;
+        width: min(64%, 30rem);
+        margin: 0;
+        padding: 0.65rem;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        box-shadow:
+          0 2.5rem 5rem rgba(83, 55, 18, 0.22),
+          0 0 0 1px rgba(11, 12, 14, 0.05);
+        transform: rotate(-1.8deg);
+        transition: transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 520ms ease;
+      }
+
+      .app-icon-frame img {
+        width: 100%;
+        height: auto;
+      }
+
+      .product-card:hover .app-icon-frame {
+        transform: rotate(0deg) translateY(-0.4rem) scale(1.012);
+        box-shadow:
+          0 3rem 6.5rem rgba(83, 55, 18, 0.27),
+          0 0 0 1px rgba(11, 12, 14, 0.05);
+      }
+
+      .site-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1.5rem 0 2.25rem;
+        border-top: 1px solid var(--line);
+        color: var(--paper-muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      @media (max-width: 860px) {
+        .site-shell {
+          width: min(calc(100% - 2rem), var(--content));
+        }
+
+        .site-header {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          padding-bottom: 3.5rem;
+        }
+
+        .studio-intro {
+          max-width: 37rem;
+        }
+
+        .product-card {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+
+        .product-copy {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .product-artwork {
+          min-height: min(76vw, 38rem);
+        }
+
+        .app-icon-frame {
+          width: min(58%, 25rem);
+        }
+      }
+
+      @media (max-width: 540px) {
+        .site-header {
+          margin-top: 1rem;
+          padding-top: 1.25rem;
+        }
+
+        .collection {
+          padding-bottom: 3.5rem;
+        }
+
+        .product-copy {
+          gap: 3rem;
+          padding: 1.5rem;
+        }
+
+        .product-index {
+          font-size: 0.68rem;
+        }
+
+        .product-title {
+          margin-top: 2rem;
+          font-size: clamp(3rem, 18vw, 4.75rem);
+        }
+
+        .product-description {
+          margin-top: 1.5rem;
+        }
+
+        .product-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .primary-action {
+          width: 100%;
+        }
+
+        .secondary-action {
+          align-self: center;
+          padding: 0.5rem;
+        }
+
+        .product-artwork {
+          min-height: 25rem;
+        }
+
+        .app-icon-frame {
+          width: min(74%, 20rem);
+        }
+
+        .product-artwork::after {
+          right: 1rem;
+          bottom: 1rem;
+        }
+
+        .site-footer {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#products">제품으로 바로가기</a>
+
+    <div class="site-shell">
+      <header class="site-header">
+        <p class="wordmark" aria-label="펀킷">FUNKIT<span class="wordmark-dot">.</span></p>
+        <p class="studio-intro">
+          우리가 직접 사용하며 발견한 작은 생활의 불편을<br />
+          오래 쓸 수 있는 제품으로 해결하는 작은 스튜디오입니다.
+        </p>
+      </header>
+
+      <main id="products" class="collection">
+        <div class="collection-header" aria-hidden="true">
+          <span>Selected work</span>
+          <span>2026</span>
+        </div>
+
+        <div class="product-grid">
+          <!-- 다음 제품은 이 article.product-card을 복제해 같은 형식으로 추가합니다. -->
+          <article class="product-card">
+            <div class="product-copy">
+              <div>
+                <div class="product-index">
+                  <span>Product 001</span>
+                  <span>Android</span>
+                </div>
+                <h1 class="product-title">토닥<br />루틴</h1>
+                <p class="product-description">
+                  회원가입과 광고 없이, 폰 안에 기록을 저장하는 신생아 수유·수면·육아 기록 앱.
+                </p>
+                <ul class="product-details" aria-label="주요 특징">
+                  <li>회원가입 없음</li>
+                  <li>광고 없음</li>
+                  <li>기기 안에 저장</li>
+                </ul>
+              </div>
+
+              <div class="product-actions">
+                <a
+                  class="primary-action"
+                  href="https://play.google.com/store/apps/details?id=com.kkanbi.todakroutine"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Play에서 보기
+                </a>
+                <a
+                  class="secondary-action"
+                  href="https://kkanbi.github.io/html-proto/todak-routine/privacy.html"
+                >
+                  개인정보처리방침
+                </a>
+              </div>
+            </div>
+
+            <div class="product-artwork" aria-label="토닥루틴 앱 아이콘 전시">
+              <figure class="app-icon-frame">
+                <img
+                  src="./assets/todak-routine-icon.png"
+                  width="1024"
+                  height="1024"
+                  alt="토닥루틴 앱 아이콘. 젖병을 든 아기와 수유, 수면, 이유식, 시간 기록을 상징하는 그림"
+                />
+              </figure>
+            </div>
+          </article>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <span>FUNKIT / Independent product studio</span>
+        <span>Small tools, thoughtfully made.</span>
+      </footer>
+    </div>
+  </body>
+</html>
